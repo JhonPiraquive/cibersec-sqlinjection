@@ -14,33 +14,6 @@ services:
       - dvwa-net
     restart: unless-stopped
 
-  mutillidae:
-    image: citizenstig/nowasp
-    container_name: mutillidae-lab
-    ports:
-      - "8081:80"   # host 80 ocupado por dvwa; acceso: http://localhost:8081
-      - "3306:3306"
-    networks:
-      - dvwa-net
-    restart: unless-stopped
-    # Mutillidae: +40 vulnerabilidades OWASP organizadas por nivel
-    # Módulos recomendados: SQL Injection, XSS, CSRF, Path Traversal
-
-  webgoat:
-    image: webgoat/goat-and-wolf
-    container_name: webgoat-lab
-    ports:
-      - "8080:8080"
-      - "9090:9090"
-    networks:
-      - dvwa-net
-    restart: unless-stopped
-    # Acceso: http://localhost:8080/WebGoat → Crear usuario de prueba
-    # Módulos recomendados:
-    #   - SQL Injection (introducción)
-    #   - SQL Injection (Advanced)
-    #   - Cross-Site Scripting (XSS) [bonus]
-
   db:
     image: mysql:5.7
     container_name: dvwa-db
